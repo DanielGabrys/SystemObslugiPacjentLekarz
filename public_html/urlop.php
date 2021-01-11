@@ -23,8 +23,12 @@ unset($_SESSION['lekarz_id']);
 <body>
 <a href="main_dc.php"> <button name="wroc">Wroc</button> </a> </br> 
 
-<a href="kalendarz_urlop.php"> <button id="block">L4</button> </a> 
-<a href="kalendarz_urlop.php"> <button id="block2">Urlop</button> </a> 
+<form action="kalendarz_urlop.php" method="post">
+    
+    <input id="l4" type="submit" name="l4" value="L4">
+    <input id="ur" type="submit" name="urlop" value="URLOP">
+
+</form>
 
 <div id="block3">
 Dostepnie do wziecia z dnia na dzien. </br>
@@ -46,29 +50,28 @@ O chęci realizacji należy poinformować na adres mailowy administratota.
 
 <style>
 
-A {text-decoration: none;}
-
-#block
+a
 {
- float:left; 
+ text-decoration:none;   
 }
 
-#block2,#block
+#l4,#ur
 {
-    display: block;
+    
     border: solid 1px;
     color: white;
     padding: 14px 28px;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-    
-    
+    width: 30%;
+    background-color: grey;
+    link-decoration:none;
 }
 
-#block2,#block
+#l4
 {
-    width: 30%; 
+ float:left; 
 }
 
 #block3
@@ -90,20 +93,13 @@ A {text-decoration: none;}
     font-size: 16px;
     height: 180px;
     background-color:#ddd;
-    
-    
 }
 
-
-#block2,#block
-{
-  background-color: grey;
-}
-
-#block2:hover,#block:hover
+#l4:hover,#ur:hover
 {
   background-color: #ddd;
   color: black;
+  
 }
 
 </style

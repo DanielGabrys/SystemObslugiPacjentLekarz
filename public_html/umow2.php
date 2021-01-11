@@ -41,7 +41,7 @@ if(isset($_GET['d']) && $today<$_GET['d'] && isset($_SESSION['lekarz_imie']) && 
 		if(!$rez0) throw new Exception($con->error);
 		$ileu=$rez0->num_rows;
 		
-		if($ileu>0)
+		if($ileu>0 || date('D', strtotime($_GET['d']))=="Sun")
 		{
 		    header('Location:zaloguj_pacjent_layout.php');
             exit();
@@ -59,9 +59,10 @@ if(isset($_GET['d']) && $today<$_GET['d'] && isset($_SESSION['lekarz_imie']) && 
     
     
 	$data = $_GET['d'];
+	
 	//$id2 = htmlentities($id);
-	//echo $id;
-	unset($_GET['value']);
+	
+	//echo date('D', strtotime($data));
 }
 else
 {
@@ -299,6 +300,8 @@ if(isset($_POST['godziny']))
         		{
                     
                 	$czas=$_POST['godziny'];
+                	$pacjent=$_SESSION['Name'];
+                	
     				if($con->query("INSERT INTO wizyty VALUES(NULL, '$data', '$czas', '$id2', '$id')"))
     				{	
     				    //customer staje sie pacjentem
@@ -308,15 +311,21 @@ if(isset($_POST['godziny']))
     					$wys=date("Y-m-d H:i:s");
     					$tresc="Umowiono na wizyte"."\r".
     					'Data: '.$data."\r".
-    					"Czas: ".$czas."\r".
-    					"Lekarz: ".$imie;
+    					"Czas: ".$czas."\r";
+    					
+    					$tresc1=$tresc."Lekarz: ".$imie;
+                        $tresc2=$tresc."Pacjent: ".$pacjent;
     					
     					//echo $wys."</br>";
     					//echo $tresc."</br>";
     					if($con->query("INSERT INTO powiadomienia_pacjent VAlUES
-    					(NULL, '$tresc','$id2','$id','$wys','nieprzeczytane','NOWA WIZYTA')"))
+    					(NULL, '$tresc1','$id2','$id','$wys','nieprzeczytane','NOWA WIZYTA')"))
     					{
-    					    
+    					    //powiadomienie dla lekarza
+    					    if($con->query("INSERT INTO powiadomienia_lekarze VAlUES(NULL, '$tresc2','$id2','$id','$wys','nieprzeczytane','NOWA WIZYTA')")){}
+    					    else
+    					        throw new Exception($con->error);
+
     					}
     					else
     				    	throw new Exception($con->error);

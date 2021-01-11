@@ -22,7 +22,6 @@
   	<br/><br/>
 </form>
 
-<a href="admin_layout.php"> <button type="button">Zarzadzaj</button> </a> </br>
 
 <?php
 if(isset($_SESSION['blad']))

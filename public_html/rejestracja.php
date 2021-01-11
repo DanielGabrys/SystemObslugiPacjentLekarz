@@ -129,7 +129,8 @@ if(isset($_POST['Reg']))
 			{
 				if($con->query("INSERT INTO customers VALUES(NULL,'$Name $Sur','$Age','$haslo_hash','$Mail',NULL,'$Pesel')"))
 				{	
-					//$_SESSION['udana_rej']=true;
+					$_SESSION['nowy_mail']=$Mail;
+					require_once "mail_rejestracja.php";
 					echo "Rejestracja zakończyla się pomyslę, dziękujemy.<br/><br/>";
 					echo "Zaloguj się, aby aktywować konto";
 					?>

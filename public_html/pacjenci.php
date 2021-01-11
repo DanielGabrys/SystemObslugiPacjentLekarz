@@ -116,6 +116,7 @@ require_once "conected.php";
 			$ile2_3=$rez2_3->num_rows;
 			$ile3_1=$rez3_1->num_rows;
 
+            
 			if($ile==0 && $ile2==0 && $Status=="a")       //puste,puste,wszyscy
 			{
 			 $ok=false;

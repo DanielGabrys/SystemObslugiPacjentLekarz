@@ -178,11 +178,6 @@ require_once "conected.php";
 		if(isset($_POST['d2'])) //jezeli wybrano imie lekarza
 		    $_SESSION['d2']=$_POST['lekarz_n'];
 		    
-		    //$ok="";
-		  
-		   // $ok.='<a href="kjjkjk">'.$_SESSION['Spec'].'</a>';
-		   // echo $ok;
-		    
 		if(isset($_SESSION['Spec']))
 		{
             $spec=$_SESSION['Spec'];
@@ -212,7 +207,7 @@ require_once "conected.php";
             else
             {
     	        $id=$lekarze[0]['ID'];
-    	       // echo "elo3";
+    	   
             }
     	       $_SESSION['lekarz_id']=$id;
 	        
@@ -334,7 +329,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++)
 
      
     $pom=0;
-    $pom2=count($tab);
+    $pom2=$ile;
  
 //////////przegladamy po kolei dni kalendarza i patrzymy ile jest przypisanych wizyt do danego dnia dla danego lekarza
 

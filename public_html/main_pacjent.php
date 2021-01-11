@@ -10,6 +10,8 @@ unset($_SESSION['lek_rem']);
 unset($_SESSION['lek_rem2']);
 unset($_SESSION['lekarz_imie']);
 unset($_SESSION['lekarz_id']);
+unset($_SESSION['nowy_mail']);
+
 
 
 /////////sprawdzamy czy sa nieprzeczytane wiadomosci
@@ -57,10 +59,18 @@ require_once "conected.php";
 <body>
 <?php
 unset($_SESSION['lekarze']);  //zmienna z umow
-echo "Witaj ".$_SESSION['Name'];
-echo "<br/> <br/>";
-
 ?>
+
+<div id="imie">
+    <div id="text">
+    <?php
+        echo "</br> Witaj ".$_SESSION['Name'];
+        echo "<br/> <br/>";
+    ?>
+    </div>
+</div>
+
+
 <a href="powiadomienia_pacjent.php"> <button  id="block">Powiadomienia
 <?php
 if($ile>0)
@@ -128,6 +138,15 @@ A {text-decoration: none;}
   color: black;
 }
 
+#imie
+{
+    background-color:#ddd;
+    
+}
 
+#text
+{
+    margin-left:10px;
+}
 
 </style

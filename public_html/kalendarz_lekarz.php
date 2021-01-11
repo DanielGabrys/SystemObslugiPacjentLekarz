@@ -5,12 +5,23 @@ $id=$_SESSION['Id'];
 
 function sprawdz_czy_urlop($tablica,$r,$data) //zapelniamy tablice danymi
 {
+$k="0";
   for($i=0;$i<$r;$i++)
   {
       if($tablica[$i]['dzien']==$data)
-        return 0;
+      {
+          if($tablica[$i]['rodzaj']=="urlop")
+          {
+              $k='URLOP';
+          }
+          else
+          {
+              $k='L4';
+          }
+      }
+        
   }
-  return 1;
+  return $k;
 }
 
 
@@ -61,7 +72,6 @@ require_once "conected.php";
 			while($row = mysqli_fetch_assoc($rez))
 			{
 			   $tab[$licz]=$row;
-			  // echo $tab[$licz]['Data']."</br>";
 			   $licz++;
 			}
 			
@@ -76,6 +86,7 @@ require_once "conected.php";
     		    
     		    $row=mysqli_fetch_assoc($rez2);
     		    $tab2[$i]=$row;
+    		    //echo $tab2[$i]['Name'].$tab[$i]['ID'].'</br>';
 	    	}
             $con->close();
 		}
@@ -169,8 +180,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++)
             $doktorek=$tab2[$i]['Name'];
             if($date!=$today) //jezeli dzis nie jest wizyta
             {
-                //echo "r"."</br>";
-                //echo $date." ".$today."</br>";
+                
                 if($i==0) //ostatni element tablicy
                 {
                     $week .= '<td class="myvisit">' . $day."</br></br> ".$godzina." ".$doktorek;
@@ -200,7 +210,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++)
                 }
                 else
                 {
-                     $week .="</br>".$godzina." ".$doktorek;
+                     $week .="</br>".$godzina." ";
                 }
                 $pom=1;
             }
@@ -218,9 +228,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++)
    
     else 
     {
-        if(sprawdz_czy_urlop($urlopy,$ile_u,$date)==0 && $pom==0)
+        $rodzaj=sprawdz_czy_urlop($urlopy,$ile_u,$date);
+        if($rodzaj!='0' && $pom==0)
         {
-            $week .= '<td class="urlop">' . $day."</br> "."URLOP"; 
+            
+            $week .= '<td class="urlop">' . $day."</br> ".$rodzaj; 
         }
         else if($pom==0)
             $week .= '<td>' . $day;

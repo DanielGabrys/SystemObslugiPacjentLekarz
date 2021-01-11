@@ -3,6 +3,7 @@ session_start();
 $id=$_SESSION['Id'];
 $miesiace;
 $naglowek=0;
+$l4=30;
 unset($_SESSION['pom']);
 if(!isset($_SESSION['licznik']))
 {
@@ -203,9 +204,6 @@ if(isset($_GET['d']) && is_numeric($_GET['d']) && isset($_GET['ym']))
 }
 
 
-
-miesiace($miesiace);
-$wynik= odstep($miesiace,1,12);
 //echo $wynik.'</br>';
 
 //laczeniebaza danych
@@ -246,12 +244,28 @@ require_once "conected.php";
 					throw new Exception($con->error);
             }
             
-    		$rez_u=$con->query("SELECT * FROM lekarze WHERE ID='$id'");  
-    		if(!$rez_u) throw new Exception($con->error);
+            if(isset($_POST['l4']))
+            {
+                 $_SESSION['l4_pom']=0;
+                 if(!isset($_SEESSION['urlop_pozostaly']))
+                 {
+                         $_SESSION['urlop_pozostaly']=$l4;
+                 }
+
+            }
+                 
+            if((!isset($_SESSION['l4_pom'])))
+            {
+    		    $rez_u=$con->query("SELECT * FROM lekarze WHERE ID='$id'");  
+    		    if(!$rez_u) throw new Exception($con->error);
     		
     		
-    		$row = mysqli_fetch_assoc($rez_u);
-    		$_SESSION['urlop_pozostaly']=$row['urlop'];
+    	    	$row = mysqli_fetch_assoc($rez_u);
+    		    $_SESSION['urlop_pozostaly']=$row['urlop'];
+            }
+            
+            
+            
         }
     			 
 
@@ -293,6 +307,16 @@ require_once "conected.php";
 	}
 
 
+
+miesiace($miesiace);
+if(!isset($_SESSION['l4_pom']))
+{
+    $wynik= odstep($miesiace,1,12);
+}
+else
+{
+    $wynik=date("Y-m-d");
+}
 
 
 //formula kalendarza

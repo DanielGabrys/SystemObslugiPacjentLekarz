@@ -117,7 +117,11 @@ if(isset($_POST['zatwierdz']))
 			{
 			    $id=$_SESSION['Id'];
 			    $data=$_SESSION['urlop'][$i];
-				if($con->query("INSERT INTO urlopy VALUES(NULL,'$id', '$data')"))
+			    if(!isset($_SESSION['l4_pom']))
+			        $rodzaj="urlop";
+			    else
+			        $rodzaj="L4";
+				if($con->query("INSERT INTO urlopy VALUES(NULL,'$id', '$data','$rodzaj')"))
 				{	
 				
 				}
@@ -134,8 +138,9 @@ if(isset($_POST['zatwierdz']))
 	        	//echo '</br>'.$ile2.'</br>';
 	        	tablica($wizyty,$rez2);
 	        	
-	        	
 	        //aktualizujemy pule dni urlopu do wziecia dla lekarza
+	        if(!isset($_SESSION['l4_pom'])) //tylko jezeli birzemy platny urlop
+             {
 	  	        $urlop= $_SESSION['urlop_pozostaly'];
 	  	        if($con->query("update lekarze set urlop='$urlop' WHERE ID='$id'"))
 				{
@@ -143,6 +148,9 @@ if(isset($_POST['zatwierdz']))
 				}
 				else
 					throw new Exception($con->error);
+             }
+	        
+
 	        
 	  	    //generujemy powiadomienie o dokonaniu wizyty
 	  	    if($ile2>0)
@@ -150,7 +158,7 @@ if(isset($_POST['zatwierdz']))
 	  	        for($i=0;$i<$ile2;$i++)
                   {      
                         
-	  	                $id2=$wizyty[$i]['Pacjent_id'];
+	  	                 $_SESSION['id_mail']=$id2;
 	  	                $id=$wizyty[$i]['Lekarz_id'];
     					$wys=date("Y-m-d H:i:s");
     					$tresc="ODWOLANO WIZYTE"."\r".
@@ -187,7 +195,10 @@ if(isset($_POST['zatwierdz']))
 	  	    }
 	  	       
 			    $con->close();
-			    header('Location:main_pacjent.php');  
+			    header('Location:main_pacjent.php');
+			    require_once "mail.php"; //wysłanie maila do administratora, pacjenta
+
+
 
 		}
 	}
