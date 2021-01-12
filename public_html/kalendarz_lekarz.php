@@ -3,6 +3,7 @@ session_start();
 $id=$_SESSION['Id'];
 //funkcje
 
+
 function sprawdz_czy_urlop($tablica,$r,$data) //zapelniamy tablice danymi
 {
 $k="0";

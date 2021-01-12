@@ -20,6 +20,7 @@ function sprawdz_czy_urlop($tablica,$r,$data) //zapelniamy tablice danymi
   return 1;
 }
 
+
 function tablica(&$tablica,$rezultat) //zapelniamy tablice danymi
 {
   $licz=0; 

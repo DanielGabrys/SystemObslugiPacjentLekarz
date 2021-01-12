@@ -12,6 +12,7 @@ if(!isset($_SESSION['licznik']))
 }
 
 
+
 //funkcje
 
 function usun(&$tab,$index,$size)
