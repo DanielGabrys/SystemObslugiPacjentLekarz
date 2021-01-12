@@ -16,6 +16,9 @@ $Pas2=$_POST['pass2'];
 $Pesel=$_POST['pesel'];
 
 
+
+
+
 //sprawdzamy dlugosc imienia
 	if((strlen($Name)<2) || (strlen($Name)>20))
 	{

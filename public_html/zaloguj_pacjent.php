@@ -20,6 +20,8 @@ if($con->connect_errno!=0)
 	//echo $con->connect_errno;
     	exit;
 }
+
+
 else
 { 
 	//echo "Connected successfully";
