@@ -32,6 +32,7 @@ function tablica(&$tablica,$rezultat) //zapelniamy tablece danymi
 		}  
 }
 
+
 function wypisz_pow(&$tablica,$rozmiar) //zapelniamy tablece danymi
 {
   for($i=0;$i<$rozmiar;$i++)
