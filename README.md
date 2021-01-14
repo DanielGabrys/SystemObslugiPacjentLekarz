@@ -1,4 +1,4 @@
-#LINUX
+# LINUX
 
 0. Najlepiej zalogować się od razu na konto administratora:
 
