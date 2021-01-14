@@ -1,39 +1,41 @@
 
 LINUX
-0. logujemy się na konto administratora
 
-su
-Password ….
+0. Najlepiej zalogować się od razu na konto administratora:
 
-1.instalujemy apache2
+su [nazwa_administratora]
+
+W innym wypadku przed większością komend trzeba dodawać 
+
+sudo
+
+
+1. Instalujemy apache2
 
 apt-get install apache2
 service apache2 status
-wpisać w przegladarke localhost(powinno działać)
 
-2.
-sudo apt-get install php 7.2*
+Po zainstalowaniu wpisujemy w przegladarkę localhost, w przypadku poprawnej instalacji pojawi się strona główna apache.
 
-edytowanie pliku index.html
+2. Instalujemy php
 
-3. instalowanie mysql
+apt-get install php 7.2*
 
- sudo apt install mysql-server -y
+3. Instalujemy mysql
 
-4. kopiujemy pliki programu do folderu /var/www/html
+apt install mysql-server -y
 
-sudo cp -r /home/karolina/Desktop/E-porady/* ./
+4. Kopiujemy pobrane pliki programu do folderu /var/www/html
 
-5.
+cp -r [ścieżka do plików]/* ./
 
-Import bazy danych:
+5. Import bazy danych:
 
 mysql
 CREATE DATABASE new_db_name;
 mysql (–u username –p) new_db_name < dump_file.sql
 
-6.
-edytuj conected.php:
+6. Edytujemy plik conected.php:
 $username = "root";
 $password = "twoje_haslo";
 
