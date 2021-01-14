@@ -17,6 +17,7 @@ $y=substr($_GET['d'],-0,-6);
 $y =(int)$y;
 $ok=checkdate($m,$d,$y);
 
+
 ////pobieramy id przez get
 if(isset($_GET['d']) && $today<$_GET['d'] && isset($_SESSION['lekarz_imie']) && $ok==1)
 {

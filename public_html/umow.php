@@ -25,6 +25,7 @@ function tablica(&$tablica,$rezultat,$pom) //zapelniamy tablece danymi
 
 ////funkcje
 
+
 if(!isset($_SESSION['zalogowany']))
 {
 header('location:index.php');
