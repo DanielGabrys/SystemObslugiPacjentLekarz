@@ -1,7 +1,10 @@
 # LINUX
 
 ##### 0. Najlepiej zalogować się od razu na konto administratora:
+
+```
 su [nazwa_administratora]
+```
 
 W innym wypadku przed większością komend trzeba dodawać 
 sudo
