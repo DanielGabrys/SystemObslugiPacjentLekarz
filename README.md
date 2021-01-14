@@ -46,38 +46,3 @@ mysql (–u username –p) new_db_name < dump_file.sql
 $username = "root";
 $password = "twoje_haslo";
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*aktualna wersja
