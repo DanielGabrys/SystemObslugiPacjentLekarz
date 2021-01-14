@@ -8,6 +8,8 @@ if(isset($_GET['value']) && is_numeric($_GET['value']))
 	//echo $id;
 	unset($_GET['value']);
 }
+
+
 else
 {
 header('Location:zaloguj_doctor_layout.php');
