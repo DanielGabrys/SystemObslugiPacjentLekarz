@@ -9,7 +9,7 @@ if(!isset($_SESSION['zalogowany2']))
 if(!isset($_SESSION['licznik']))
 {
 	header('location:main_dc.php');
-}
+}  
 
 
 $wizyty=NULL;
