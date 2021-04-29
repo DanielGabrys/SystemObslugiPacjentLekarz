@@ -1,4 +1,4 @@
-CHECK HOW WEBSITE WORK HERE
+CHECK OUT HOW IT WORKS HERE
 https://obsluga-pacjent.000webhostapp.com/
 
 AS USER - create account
