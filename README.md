@@ -14,7 +14,7 @@ PASSWORD :Hello69dg
 
 ##### 0. Loggin as administartor :
 ``
-su [nazwa_administratora]
+su [name]
 ``
 ##### Install apache2
 ```
