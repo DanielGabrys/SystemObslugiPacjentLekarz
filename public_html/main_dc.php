@@ -33,12 +33,16 @@ require_once "conected.php";
 		echo '<span style="color:red;">Blad serwera </span>';
 		echo '<br/>'.$e;
 	}
-	
 
+
+
+	
+require_once "menu.php"; //arkusz stylow
 ?>
 
 <!DOCTYPE html>
 <html>
+ <link href="menu.css" rel="stylesheet">  
 <head>
 	<title>System obslugi dokkora</title>
 </head>
@@ -69,72 +73,8 @@ if($ile>0)
 </button> </a>  
 <a href="kalendarz_lekarz.php"> <button id="block2">kalendarz</button> </a> 
 <a href="urlop.php"> <button id="block2">Podanie o urlop</button> </a> 
-<a href="pacjenci.php"> <button id="block2">Pacjenci</button> </a> 
+<a href="pacjenci2.php"> <button id="block2">Pacjenci</button> </a> 
 <a href="logout.php"> <button id="block3">Wyloguj!</button> </a> 
 </body>
 </html> 
 
-
-<style>
-
-A {text-decoration: none;}
-
-#block, #block2, #block3
-{
-    display: block;
-    border: none;
-    color: white;
-    padding: 14px 28px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    float:left;
-}
-
-#block, #block2
-{
-    width: 23%; 
-}
-
-#block3
-{
-    width: 8%; 
-}
-
-#block
-{
-    <?php
-    if($ile!=0)
-        {?> 
-        background-color: #4CAF50;
-        <?php }
-    else
-        {?>
-        background-color: grey; 
-        <?php }
-    ?>
-}
-
-#block2, #block3
-{
-  background-color: grey;
-}
-
-#block:hover,#block2:hover,#block3:hover
-{
-  background-color: #ddd;
-  color: black;
-}
-
-#imie
-{
-    background-color:#ddd;
-    
-}
-
-#text
-{
-    margin-left:10px;
-}
-
-</style
