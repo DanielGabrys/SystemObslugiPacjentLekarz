@@ -8,8 +8,43 @@ if(isset($_GET['i']))
 	$ok=1;
 	
 }
-else
+if(isset($_GET['d']))
 {
+$d = $_GET['d'];
+$ok=1;
+
+
+require_once "conected.php";
+	mysqli_report(MYSQLI_REPORT_STRICT);
+	try
+	{
+		$con= new mysqli($servername,$username,$password,$database);
+		if($con->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+
+		else
+		{
+		    
+		
+	        $id=$_SESSION['Id'];
+		$rez=$con->query("DELETE FROM powiadomienia_lekarze WHERE lekarz_id='$id' AND ID='$d'");
+		if(!$rez) throw new Exception($con->error);
+		
+
+		$con->close();
+		}
+	}
+
+	catch(Exception $e)
+	{
+		echo '<span style="color:red;">Blad serwera </span>';
+		echo '<br/>'.$e;
+	}
+
+
+
 
 }
 
@@ -40,16 +75,27 @@ function wypisz_pow(&$tablica,$rozmiar) //zapelniamy tablece danymi
       if($tablica[$i]['status']=='nieprzeczytane')
       {
           ?>
-          <a href="powiadomienia_lekarz.php?i=<?php echo $iden; ?>"> <button id="block">
+           <a href="powiadomienia_lekarz.php?i=<?php echo $iden?>&d=<?php echo $iden?>">
+ 	 <button id="del"> usun</button> </a>
+
+	 <a href="powiadomienia_lekarz.php?i=<?php echo $iden; ?>">
+	 <button id="block">
           <?php echo $tablica[$i]['typ']."</br></br>Wyslano: ". $tablica[$i]['data_wyslania'];?>
           </button> </a>
           <?php
       }
       else
       {
+
            ?>
-          <a href="powiadomienia_lekarz.php?i=<?php echo $iden; ?>"> <button id="block2">
+ 	 <a href="powiadomienia_lekarz.php?i=<?php echo $iden?>&d=<?php echo $iden?>">
+ 	 <button id="del"> usun</button> </a>
+	  
+
+	  <a href="powiadomienia_lekarz.php?i=<?php echo $iden; ?>">	
+	  <button id="block2">
           <?php echo $tablica[$i]['typ']."</br></br>Wyslano: ". $tablica[$i]['data_wyslania'];?>
+	
           </button> </a>
           <?php
           
@@ -67,9 +113,14 @@ function find_ID(&$tablica,$rozmiar,$id) //zapelniamy tablece danymi
        return $i;
       }
   }
+  return 0;
 }
 
 ///fukcje koniec
+
+
+
+
 
 if(!isset($_SESSION['zalogowany2']))
 {
@@ -79,6 +130,9 @@ header('location:index.php');
 
 if($ok==1)
 {
+
+
+
 	require_once "conected.php";
 	mysqli_report(MYSQLI_REPORT_STRICT);
 	try
@@ -91,7 +145,7 @@ if($ok==1)
 
 		else
 		{
-	
+		
 		//przeczytane,nieprzeczytane
 	   
 		$rez2=$con->query("UPDATE powiadomienia_lekarze SET status='przeczytane' WHERE ID='$ID'");
@@ -163,22 +217,31 @@ A {text-decoration: none;
     font-size: 12px;
     cursor: pointer;
     text-align: center;
+    height:14%;
 }
 
 #block2
 {
-    width: 20%; 
+    width: 16%; 
     background-color: #aeb6bf;
     
     
 
 }
 
+#del
+{
+display: block;
+background-color: grey;
+  width: 4%; 
+  float:right;
+  height:14%;
+}
 
 #block
 {
   background-color: grey;
-  width: 20%; 
+  width: 16%; 
   float:right;
   
 }
@@ -228,14 +291,20 @@ if($ok==0)
 }
 else
 {
-$index=find_ID($tab,$ile,$ID);    
+$index=find_ID($tab,$ile,$ID);  
+
 ?>
     <div id="pusty">
         <div id="text">
-        <?php echo nl2br($tab[$index]['tresc']); ?>
+        <?php 
+		
+		{
+		echo nl2br($tab[$index]['tresc']); }?>
+		
         </div>
     </div>
 <?php 
+
 }
 
 wypisz_pow($tab,$ile);
