@@ -2,7 +2,8 @@ CHECK HOW WEBSITE WORK HERE
 https://obsluga-pacjent.000webhostapp.com/
 
 AS USER - create account
-AS DOCTOR - login below (this is one example , tere are more doctors:))
+
+AS DOCTOR - login below (this is one example , there are more doctors:))
 
 LOGIN: michka@gmail.com
 PASSWORD :Hello69dg
