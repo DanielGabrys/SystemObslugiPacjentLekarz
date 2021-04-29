@@ -46,7 +46,8 @@ require_once "conected.php";
      
 		//choroby wszystkie
 	   
-		$rez=$con->query("SELECT customers.Name,customers.Pesel,choroby.choroba,choroby_pacjenci.* FROM choroby_pacjenci JOIN customers ON customers.Id = choroby_pacjenci.cus_id JOIN choroby ON choroby.chor_id = choroby_pacjenci.chor_id WHERE customers.Id='$id' order by chor_id");
+		$rez=$con->query("SELECT customers.Name,customers.Pesel,choroby.choroba,choroby_pacjenci.* FROM choroby_pacjenci JOIN customers ON
+		customers.Id = choroby_pacjenci.cus_id JOIN choroby ON choroby.chor_id = choroby_pacjenci.chor_id WHERE customers.Id='$id' order by chor_id");
 		if(!$rez) throw new Exception($con->error);
 		
 		$ile=$rez->num_rows;
@@ -54,7 +55,9 @@ require_once "conected.php";
        //choroby ze statusem
         if(isset($_POST['status']) && $status!="wszystkie")
         {
-		$rez2=$con->query("SELECT customers.Name,customers.Pesel,choroby.choroba,choroby_pacjenci.* FROM choroby_pacjenci JOIN customers ON customers.Id = choroby_pacjenci.cus_id JOIN choroby ON choroby.chor_id = choroby_pacjenci.chor_id WHERE customers.Id='$id' AND status='$status' order by chor_id");
+		$rez2=$con->query("SELECT customers.Name,customers.Pesel,choroby.choroba,choroby_pacjenci.* FROM choroby_pacjenci JOIN customers ON
+		customers.Id = choroby_pacjenci.cus_id JOIN choroby ON choroby.chor_id = choroby_pacjenci.chor_id WHERE customers.Id='$id'
+		AND status='$status' order by chor_id");
 		
 		
 			if(!$rez2) throw new Exception($con->error);
